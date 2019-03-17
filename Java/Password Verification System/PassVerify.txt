@@ -1,0 +1,16 @@
+
+PASSWORD SPECIFICATIONS 
+Maximum password length:  8
+Minimum password length: 6
+Minimum number of Uppercase letters: 1
+Minimum number of digits: 1
+
+Hello5 = PPPP
+
+lololol = PPFF
+
+Yomama6 = PPPP
+
+Yellow = PPPF
+
+Yousuck44 = FPPP

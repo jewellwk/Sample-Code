@@ -1,0 +1,960 @@
+<!-- 	Jewell Wright
+		CSC 443 
+		Homework #2
+-->
+<!DOCTYPE html>
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882">
+<head>
+<title>PacMan</title>
+<style>
+<!--
+#cherry {
+height: 20px;
+}
+
+table{
+background-color: black;
+}
+
+td{ 
+background-color: black;
+vertical-align: middle;
+height: 20px;
+width: 20px;
+}
+
+td.top1 {border-top: solid 2px #6666ff;}
+td.borderTop {border-top: double 4px #6666ff;}
+td.left1 {border-left: solid 2px #6666ff;}
+td.borderLeft {border-left: double 4px #6666ff;}
+td.right1 {border-right: solid 2px #6666ff;}
+td.borderRight {border-right: double 4px #6666ff;}
+td.bot1 {border-bottom: solid 2px #6666ff;}
+td.borderBottom {border-bottom: double 4px #6666ff;}
+
+div{
+margin-left: 7px;
+height: 5px;
+width: 5px;
+background-color:yellow;
+}
+</style>
+</head>
+
+<body>
+<table class="t">
+<tr><!-- Row 0-->
+	<td colspan = "15"></td>
+	<td id ="score" colspan = "11" style="text-align: right; font-size: 18px; font-weight: bold; color: #FFF;">Score: 0</td>
+</tr>
+
+<tr><!-- Row 1-->
+	<td class="borderLeft borderTop"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="bot1 borderTop"> <div> </div></td>
+	<td class="bot1 borderTop"> <div> </div></td>
+	<td class="borderRight borderTop"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft borderTop"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderRight borderTop"> <div> </div></td>
+</tr>
+<tr><!-- Row 2-->
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1 top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1 top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 3-->
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 4-->
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 5-->
+	<td class="borderLeft"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 6-->
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td class="left1 top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td class="left1 top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1 top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 7-->
+	<td class="right1 borderLeft"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 8-->
+	<td class="borderLeft bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="top1 left1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="right1 bot1"> <div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="borderRight bot1"> <div> </div></td>
+</tr>
+<tr><!-- Row 9-->
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1 right1"> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+	<td class="borderTop"> </td>
+</tr>
+<tr><!-- Row 10-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 11-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="top1 left1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 12-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 13-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 14-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft"> <div> </div></td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td > </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="left1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="top1 bot1"> </td>
+	<td class="borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 15-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td > </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 16-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 17-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1"> </td>
+	<td class="top1"> </td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">R</td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">E</td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">A</td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">D</td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">Y</td>
+	<td class="top1" style = "color: yellow; text-align: right; font-weight: bold;">!</td>
+	<td class="top1"> <img src = "cherry.png" id="cherry"></td>
+	<td class="right1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 18-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1 top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="right1 top1"> </td>
+	<td class="right1 left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 19-->
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td > </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="right1"> </td>
+	<td class="right1 left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 20-->
+	<td class="borderLeft borderTop"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="top1 left1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div></td>
+	<td> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderTop bot1"> <div> </div></td>
+	<td class="borderRight borderTop"> <div> </div></td>
+</tr>
+<tr><!-- Row 21-->
+	<td class="borderLeft right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1 left1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 22-->
+	<td class="borderLeft right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="left1"> </td>
+	<td class="right1"> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div></td>
+</tr>
+<tr><!-- Row 23-->
+	<td class="borderLeft borderBottom"> <div> </div></td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 right1"> <div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"><img src = "pacman_L.gif"></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="bot1"> <div> </div></td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="top1 left1"> <div> </div>  </td>
+	<td class="top1 borderBottom"> <div> </div>  </td>
+	<td class="borderRight borderBottom"> <div> </div></td>
+</tr>
+<tr><!-- Row 24-->
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="borderLeft right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td class="top1 left1">  </td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="top1">  </td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="top1">  </td>
+	<td class="top1">  </td>
+	<td class="left1 right1"><div> </div> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div>  </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+</tr>
+<tr><!-- Row 25-->
+	<td> </td>
+	<td> </td>
+	<td class="borderLeft right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td>  </td>
+	<td>  </td>
+	<td> </td>
+	<td>  </td>
+	<td>  </td>
+	<td> </td>
+	<td>  </td>
+	<td>  </td>
+	<td class="left1 right1"><div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td class="left1"> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div>  </td>
+	<td> </td>
+	<td> </td>
+</tr>
+<tr><!-- Row 26-->
+	<td class="borderTop borderLeft"> <div> </div> </td>
+	<td class="borderTop bot1"> <div> </div> </td>
+	<td class="bot1"> <div> </div> </td>
+	<td class="top1 bot1"><div> </div> </td>
+	<td class="top1 bot1"><div> </div> </td>
+	<td class="right1 bot1"> <div> </div></td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 right1"> <div> </div> </td>
+	<td>  </td>
+	<td>  </td>
+	<td class="top1 left1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"> <div> </div> </td>
+	<td class="right1 bot1"><div> </div> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 bot1"> <div> </div> </td>
+	<td class="top1 bot1"><div> </div> </td>
+	<td class="top1 bot1"><div> </div> </td>
+	<td class="bot1"> <div> </div>  </td>
+	<td class="borderTop bot1"><div> </div> </td>
+	<td class="borderTop borderRight"> <div> </div> </td>
+</tr>
+<tr><!-- Row 27-->
+	<td class="borderLeft right1"> <div> </div> </td>
+	<td class="left1 top1">  </td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="top1">  </td>
+	<td class="top1">  </td>
+	<td class="top1">  </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td>  </td>
+	<td>  </td>
+	<td class="left1 right1"><div> </div>  </td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td> </td>
+	<td> </td>
+	<td class="top1">  </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="top1"> </td>
+	<td class="left1 borderRight"> <div> </div>  </td>
+</tr>
+<tr><!-- Row 28-->
+	<td class="borderLeft right1"> <div> </div> </td>
+	<td class="left1">  </td>
+	<td>  </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td>  </td>
+	<td>  </td>
+	<td>  </td>
+	<td class="left1 right1"> <div> </div> </td>
+	<td>  </td>
+	<td>  </td>
+	<td class="left1 right1"><div> </div>  </td>
+	<td>  </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td>  </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td> </td>
+	<td class="left1 borderRight"> <div> </div>  </td>
+</tr>
+<tr><!-- Row 29-->
+	<td class="borderLeft borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"><div> </div>  </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div></td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div></td>
+	<td class="top1 borderBottom"><div> </div>  </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="borderBottom"><div> </div>  </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"> <div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="top1 borderBottom"><div> </div> </td>
+	<td class="borderRight borderBottom"> <div> </div>  </td>
+</tr>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+	var pr = 23;// Starts from 1 - 29
+	var pc = 12;// Starts from 0 - 25
+	var s = 0; //Score
+				
+	$("body").keydown(function(event){
+		switch (event.which) {
+			case 37:
+				left();
+				break;
+			case 38:
+				up();
+				break;
+			case 39:
+				right();
+				break;
+			case 40:
+				down();
+				break;
+			default:
+				break;
+		}
+	});
+	
+	function up (){
+		var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+		if (myc.hasClass("top1") || myc.hasClass("borderTop")){
+			myc.html("<img src = pacman_U.gif>");
+		} else {
+			//move Up
+			pr--;
+			myc.html("");
+			var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+			if (myc.children().length){
+				s++;
+				$("#score").html("Score "+s+"");
+			}
+			myc.html("<img src = pacman_U.gif>");
+		}
+	}
+		
+	function down (){
+		var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+		if (myc.hasClass("bot1") || myc.hasClass("borderBottom")){
+			myc.html("<img src = pacman_D.gif>");
+		} else {
+			//move Down
+			pr++;
+			myc.html("");
+			var myc = $("table tr:eq("+(pr)+") td:eq("+pc+")");
+			if (myc.children().length){
+				s++;
+				$("#score").html("Score "+s+"");
+			}
+			myc.html("<img src = pacman_D.gif>");
+		}	
+	}
+		
+	function left (){
+		var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+		if (myc.hasClass("left1")|| myc.hasClass("borderLeft")){
+			myc.html("<img src = pacman_L.gif>");
+		} else {
+			//move left
+			pc--;
+			myc.html("");
+			var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+			if (myc.children().length){
+				s++;
+				$("#score").html("Score "+s+"");
+			}
+			myc.html("<img src = pacman_L.gif>");
+		}
+	}
+		
+	function right (){
+		var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+		if (myc.hasClass("right1") || myc.hasClass("borderRight")){
+			myc.html("<img src = pacman_R.gif>");
+		} else {
+			//move Right
+			pc++;
+			myc.html("");
+			var myc = $("table tr:eq("+pr+") td:eq("+pc+")");
+			if (myc.children().length){
+				s++;
+				$("#score").html("Score "+s+"");
+			}
+			myc.html("<img src = pacman_R.gif>");
+		}
+	}
+});
+</script>
+</body>
+</html>
